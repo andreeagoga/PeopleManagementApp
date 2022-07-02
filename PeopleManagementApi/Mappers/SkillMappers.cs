@@ -10,6 +10,8 @@ namespace PeopleManagementApi.Mappers
             {
                 Id = skill.Id,
                 Name = skill.Name,
+                Level = skill.Level,
+                Type = skill.Type,
                 // People = skill.People?.Select(si => PeopleMappers.MapPeopleToPeopleDTO(si)).ToList(),
             };
         
@@ -17,6 +19,8 @@ namespace PeopleManagementApi.Mappers
             new Skill
             {
                 Name = skillDTO.Name,
+                Level = skillDTO.Level,
+                Type = skillDTO.Type,
                 // People = skillDTO.People?.Select(peopleDTO => PeopleMappers.MapPeopleDTOToPeople(peopleDTO)).ToList(),
             };
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PeopleManagementApi.Models;
 
@@ -11,9 +12,10 @@ using PeopleManagementApi.Models;
 namespace PeopleManagementApi.Migrations
 {
     [DbContext(typeof(PeopleManagementContext))]
-    partial class PeopleManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20220701195835_SkillsLevelAdd")]
+    partial class SkillsLevelAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,10 +141,6 @@ namespace PeopleManagementApi.Migrations
 
                     b.Property<long>("ParentId")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

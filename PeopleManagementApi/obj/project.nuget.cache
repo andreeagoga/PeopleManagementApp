@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pCURni0E4cZbPyGS95omB647TMEl6Cd+4nM9w908Z+NOSs/slVK9nrcIPzBImpVqkGHxOx7i/IC8HBTNhT28qQ==",
+  "dgSpecHash": "CeKnn7LbaY+EGcaYYEVjiIcD3uloZjzRUqMPEeJfmYuexd62p8GdYSJ50Pi3HSAig/JHxo9P4d77NNwNopug5g==",
   "success": true,
-  "projectFilePath": "/Users/andreea/Documents/4.2. DotNet/PeopleManagement/PeopleManagementApi/PeopleManagementApi.csproj",
+  "projectFilePath": "/Users/andreea/Desktop/PeopleManagementApp/PeopleManagementApi/PeopleManagementApi.csproj",
   "expectedPackageFiles": [
     "/Users/andreea/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
     "/Users/andreea/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

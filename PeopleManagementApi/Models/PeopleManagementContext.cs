@@ -37,7 +37,7 @@ namespace PeopleManagementApi.Models
         public DbSet<Company> Companies { get; set; } = null!;
         public DbSet<Job> Jobs { get; set; } = null!;
         public DbSet<People> People { get; set; } = null!;
-        public DbSet<Skill> Skill { get; set; } = null!;
+        public DbSet<Skill> Skills { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
     }
   

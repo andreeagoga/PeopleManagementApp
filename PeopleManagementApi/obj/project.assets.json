@@ -9847,11 +9847,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/andreea/Documents/4.2. DotNet/PeopleManagement/PeopleManagementApi/PeopleManagementApi.csproj",
+      "projectUniqueName": "/Users/andreea/Desktop/PeopleManagementApp/PeopleManagementApi/PeopleManagementApi.csproj",
       "projectName": "PeopleManagementApi",
-      "projectPath": "/Users/andreea/Documents/4.2. DotNet/PeopleManagement/PeopleManagementApi/PeopleManagementApi.csproj",
+      "projectPath": "/Users/andreea/Desktop/PeopleManagementApp/PeopleManagementApi/PeopleManagementApi.csproj",
       "packagesPath": "/Users/andreea/.nuget/packages/",
-      "outputPath": "/Users/andreea/Documents/4.2. DotNet/PeopleManagement/PeopleManagementApi/obj/",
+      "outputPath": "/Users/andreea/Desktop/PeopleManagementApp/PeopleManagementApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/andreea/.nuget/NuGet/NuGet.Config"
