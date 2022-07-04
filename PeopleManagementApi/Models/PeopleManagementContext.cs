@@ -39,6 +39,7 @@ namespace PeopleManagementApi.Models
         public DbSet<People> People { get; set; } = null!;
         public DbSet<Skill> Skills { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Todo> Todos { get; set; } = null!;
     }
   
 }

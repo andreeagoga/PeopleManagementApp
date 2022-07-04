@@ -15,7 +15,7 @@ using System.Security.Claims;
 
 namespace PeopleManagementApi.Controllers
 {
-    [Route("api/company/job/[controller]")]
+    [Route("api/company/")]
     [ApiController]
     // [Authorize]
     public class PeopleController : ControllerBase
@@ -28,7 +28,7 @@ namespace PeopleManagementApi.Controllers
     }
 
         // GET: api/People
-        [HttpGet("{companyId}/{jobId}")]
+        [HttpGet("{companyId}/job/{jobId}/[controller]")]
         public async Task<ActionResult<IEnumerable<PeopleDTO>>> GetPeopleAll(long jobId, long companyId)
         {
             var query = _context.People.AsQueryable();
@@ -42,7 +42,7 @@ namespace PeopleManagementApi.Controllers
         }
 
         // GET: api/People/5
-        [HttpGet("{companyId}/{jobId}/{id}")]
+        [HttpGet("{companyId}/job/{jobId}/[controller]/{idPerson}")]
         public async Task<ActionResult<PeopleDTO>> GetPeople(long id, long jobId, long companyId)
         {
             var people = await _context.People

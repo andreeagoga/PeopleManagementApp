@@ -47,21 +47,17 @@ namespace PeopleManagementApi.Controllers
         // GET: api/Company/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CompanyDTO>> GetCompany(long id)
-             {
+        {
                var company = await _context.Companies.Include(s => s.Jobs).FirstOrDefaultAsync(item => item.Id == id);
 
-      if (company == null)
-      {
-        return NotFound();
-      }
+                if (company == null)
+                {
+                    return NotFound();
+                }
 
-      return CompanyMappers.CompanyToDTO(company);
-
+                return CompanyMappers.CompanyToDTO(company);
 
         }
-
-
-    
 
         // PUT: api/Company/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
@@ -141,3 +137,4 @@ namespace PeopleManagementApi.Controllers
         }
     }
 }
+        

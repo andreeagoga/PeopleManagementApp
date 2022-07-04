@@ -14,7 +14,7 @@ using System.Security.Claims;
 
 namespace PeopleManagementApi.Controllers
 {
-    [Route("api/company/[controller]")]
+    [Route("api/company/")]
     [ApiController]
     [Authorize]
     public class JobController : ControllerBase
@@ -26,10 +26,11 @@ namespace PeopleManagementApi.Controllers
             _context = context;
         }
 
-        // GET: api/company/job/5
-        [HttpGet("{companyId}")]
+        // GET: api/company/5/job
+        [HttpGet("{companyId}/[controller]")]
         public async Task<ActionResult<IEnumerable<JobDTO>>> GetJobs(long companyId, string? searchLocation, string? searchType, string? searchTitle)
         {
+            
             var query = _context.Jobs.AsQueryable();
 
                if(searchLocation != null)
@@ -45,29 +46,28 @@ namespace PeopleManagementApi.Controllers
                 query = query.Where(item => item.Title == searchTitle);
             }
             return await query.Include(t => t.People)
-            .Where(item => item.Comp.Id == companyId)
-            .Select(item => JobMappers.JobToDTO(item))
-            .ToListAsync();
+                .Where(item => item.Comp.Id == companyId)
+                .Select(item => JobMappers.JobToDTO(item))
+                .ToListAsync();
             
         }
 
         // GET: api/company/job/5/5
-        [HttpGet("{companyId}/{id}")]
-        public async Task<ActionResult<JobDTO>> GetJob(long id, long companyId)
+        [HttpGet("{companyId}/[controller]/{jobId}")]
+        public async Task<ActionResult<JobDTO>> GetJob(long companyId, long jobId)
         {
+            
             var job = await _context.Jobs
             .Include(t => t.People)
-            .Where(item => item.Comp.Id == companyId)
-            .Where(item => item.Id == id)
-            .Select(item => JobMappers.JobToDTO(item))
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(item => item.Id == jobId && item.Comp.Id == companyId);
 
             if (job == null)
             {
                 return NotFound();
             }
 
-            return job;
+            return JobMappers.JobToDTO(job);
+
         }
 
         //Put: api/company/job/5/5
@@ -91,14 +91,7 @@ namespace PeopleManagementApi.Controllers
             }
             var company = await _context.Companies.FindAsync(companyId);
             var job = JobMappers.DTOToJob(jobDTO);
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-            Console.WriteLine(job.Title);
-            Console.WriteLine(job.Description);
-            Console.WriteLine(job.Location);
-            Console.WriteLine(job.Type);
-            Console.WriteLine(job.Type);
-            Console.WriteLine(job.Comp.Id);
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            job.Comp = company;
        
             if (company == null || job == null)
             {

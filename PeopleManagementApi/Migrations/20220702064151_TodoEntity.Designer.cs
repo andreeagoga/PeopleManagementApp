@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PeopleManagementApi.Models;
 
@@ -11,9 +12,10 @@ using PeopleManagementApi.Models;
 namespace PeopleManagementApi.Migrations
 {
     [DbContext(typeof(PeopleManagementContext))]
-    partial class PeopleManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20220702064151_TodoEntity")]
+    partial class TodoEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,9 +161,8 @@ namespace PeopleManagementApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<string>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsComplete")
                         .HasColumnType("bit");
