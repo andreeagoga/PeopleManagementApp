@@ -1,0 +1,53 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .main-card, form{
+      margin: 0 auto;
+      max-width: 50%;
+  }
+
+  mat-card-title {
+      text-align: center;
+  }
+
+  mat-card-subtitle {
+      color:cornflowerblue;
+      font-weight: bold;
+  }
+
+  mat-content {
+      width: 1000px
+    
+  }
+  table {
+      margin: 0 auto;
+  }
+
+  th {
+      text-align: center;
+  }
+
+  td {
+      text-align: center;
+      height: 100px;
+
+  }
+
+  .mat-column-operations {
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .operation-div {
+      max-width: 100%;
+  }
+
+ 

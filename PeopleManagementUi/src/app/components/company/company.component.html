@@ -1,0 +1,93 @@
+
+<main class="mt-5">
+    <div class="card d-flex"  style="width: 80%; margin: 0 auto;">
+        <div class="card-body my-3">
+            <h1 class="card-title" style="text-align: center;">Companies list</h1>
+                <div *ngIf="dataSource.length >0">
+                    <ul class="list-group my-5" *ngFor="let newItem of dataSource">
+                        <li class="list-group-item active" >
+                            <h2>{{newItem.name}}</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Description: </span>{{newItem.description}}
+                        </li>
+                        <li class="list-group-item">
+                            <span>Location: </span> {{newItem.location}}
+                        </li>
+                        <li class="list-group-item">Jobs: 
+                          <span *ngFor="let item of newItem.jobs">
+                            <span>{{item.title}}
+                                <span *ngFor="let people of item.people">
+                                    <span>{{people.firstName}} {{people.lastName}}</span>
+                                </span>
+                            </span> 
+                        </span> 
+                      </li>
+                        <li class="list-group-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Jobs
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <div *ngFor="let item of newItem.jobs">
+                                  <li class="dropdown-item"> {{item.title}}</li>
+                                  <div *ngFor="let people of item.people">
+                                    <li class="dropdown-item"> {{people.firstName}} {{people.lastName}}</li>
+                                  </div>
+                                  </div>
+                                </ul>
+                              </div>
+                            <!-- <span>Jobs:</span>
+                            <br /> {{item.title}} -->
+                        </li>
+                        <li class="list-group-item d-flex justify-content-end">
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/', newItem.id]">Jobs details</button>
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/edit/', newItem.id]">Edit company</button>                            
+                            <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
+                                <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove company</button>
+                            </div>
+    
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group-item d-flex ">
+                    <div class="flex-grow-1 ">
+                        <button  class="btn btn-primary mx-2" (click)="navigateToAddPage()">Add new company</button>            
+                    </div>
+                    <div >
+                      <p>
+                        <a class="btn btn-primary mx-2" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Filter by location</a>
+                        <!-- <button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Filter by job title</button> -->
+                      </p>
+                      <div class="row d-flex flex-column">
+                        <div class="col">
+                          <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Location</mat-label>
+                                    <input matInput name="location" [(ngModel)]="newItem.location">
+                                </mat-form-field>
+                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByLocation(newItem)">Filter</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="col">
+                          <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <div class="card card-body">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Job title</mat-label>
+                                    <input matInput name="location" [(ngModel)]="newItem.location">
+                                </mat-form-field>
+                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByLocation(newItem)">Filter</button>
+                            </div>
+                          </div>  -->
+                        <!-- </div> -->
+                      </div>
+                    </div>
+            
+              </div>
+
+        </div>  
+    </div>
+</main>
+

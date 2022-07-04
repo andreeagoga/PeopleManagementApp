@@ -1,0 +1,99 @@
+
+<main class="mt-5">
+    <div class="card d-flex"  style="width: 80%; margin: 0 auto;">
+        <div class="card-body my-3">
+            <h1 class="card-title" style="text-align: center;">Open jobs in {{dataSource?.name}}</h1>
+                <div>
+                    <ul class="list-group my-5" *ngFor="let newItem of dataSource?.jobs">
+                        <li class="list-group-item active" >
+                            <h2>{{newItem.title}}</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Description: </span>{{newItem.description}}
+                        </li>
+                        <li class="list-group-item">
+                            <span>Location: </span> {{newItem.location}}
+                        </li>
+                        <li class="list-group-item">
+                            <span>Type: </span> {{newItem.type}}
+                        </li>
+                        <!-- <li class="list-group-item">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                  People
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <div *ngFor="let item of newItem.people">
+                                  <li class="dropdown-item"> {{item.firstName}}</li>
+                                  </div>
+                                </ul>
+                              </div>
+                        </li> -->
+                        <li class="list-group-item d-flex justify-content-end">
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/people', dataSource?.id, newItem.id]">People</button>
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/update',  dataSource?.id, newItem.id]">Edit job</button>                            
+                            <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
+                                <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove job</button>
+                            </div>
+    
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group-item d-flex ">
+                    <div class="flex-grow-1 ">
+                        <button  class="btn btn-primary mx-2" (click)="navigateToAddJobPage()">Add new job</button>            
+                    </div>
+                    <div >
+                      <p>
+                        <a class="btn btn-primary mx-2" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Filter by location</a>
+                        <button class="btn btn-primary mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Filter by title</button>
+                        <button class="btn btn-primary mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample2">Filter by type</button>
+                    </p>
+                      <div class="row d-flex flex-column">
+                        <div class="col">
+                          <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Location</mat-label>
+                                    <input matInput name="location" [(ngModel)]="newJob.location">
+                                </mat-form-field>
+                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByLocation(newJob)">Filter</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <div class="card card-body">
+                                <mat-form-field class="example-full-width" appearance="fill">
+                                    <mat-label>Job title</mat-label>
+                                    <input matInput name="title" [(ngModel)]="newJob.title">
+                                </mat-form-field>
+                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button>
+                            </div>
+                          </div> 
+                        </div>
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample3">
+                              <div class="card card-body">
+                                  <mat-form-field class="example-full-width" appearance="fill">
+                                      <mat-label>Job type</mat-label>
+                                      <input matInput name="type" [(ngModel)]="newJob.type">
+                                  </mat-form-field>
+                                  <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByType(newJob)">Filter</button>
+                              </div>
+                            </div> 
+                          </div>
+                      </div>
+                    </div>
+            
+              </div>
+
+        </div>  
+    </div>
+</main>
+
+
+
+
+
+

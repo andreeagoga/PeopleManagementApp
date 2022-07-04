@@ -1,0 +1,28 @@
+<section class="mt-5">
+    <h1 style="text-align: center;">Add new job</h1>
+    <form [formGroup]="addJobForm" (ngSubmit)="onAddSubmit()">
+        <div class="card my-5" style="width: 30%; margin: 0 auto;">        
+            <mat-form-field class="my-1 mx-3 mt-3" appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title">
+            <mat-error *ngIf="title?.invalid">The name needs to have at least {{title?.errors?.minlength?.requiredLength}} characters.</mat-error>
+          </mat-form-field>
+          <mat-form-field class="my-1 mx-3" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+            <mat-error *ngIf="description?.invalid"> Description is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="my-1 mx-3" appearance="fill">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location">
+            <mat-error *ngIf="location?.invalid"> Location is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="my-1 mx-3" appearance="fill">
+            <mat-label>Type</mat-label>
+            <input matInput formControlName="type">
+            <mat-error *ngIf="type?.invalid"> Type is required</mat-error>
+          </mat-form-field>
+            <button  class="btn btn-primary m-3" mat-raised-button color="primary" type="submit" [disabled]="addJobForm?.invalid">Add</button>
+      </div>
+</form>
+</section>

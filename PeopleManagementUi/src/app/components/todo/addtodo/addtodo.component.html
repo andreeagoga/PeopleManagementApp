@@ -1,0 +1,21 @@
+<section class="mt-5">
+    <h1 style="text-align: center;">Add new task</h1>
+        <form [formGroup]="addTodoForm" (ngSubmit)="onAddTodoSubmit()">
+            <div class="card my-5" style="width: 30%; margin: 0 auto;">
+            <mat-form-field class="my-1 mx-3 mt-3" appearance="fill">
+                <mat-label>Task</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="name?.invalid">Task name needs to have at least {{name?.errors?.minlength?.requiredLength}} characters.</mat-error>
+            </mat-form-field>
+            <mat-form-field class="my-1 mx-3" appearance="fill">
+                <mat-label>EndDate</mat-label>
+                <input matInput formControlName="endDate">
+                <mat-error *ngIf="endDate?.invalid">End date is required</mat-error>
+            </mat-form-field>
+            <div class="my-1 mx-3 mt-3">
+                <mat-checkbox formControlName="isComplete" class="example-margin">Completed!</mat-checkbox>
+            </div>
+            <button  class="btn btn-primary m-3" type="submit" [disabled]="addTodoForm?.invalid">Add</button>
+        </div>
+    </form>
+</section> 

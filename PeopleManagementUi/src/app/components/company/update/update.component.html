@@ -1,0 +1,25 @@
+<section class="mt-5">
+  <h1 style="text-align: center;">Edit company</h1>
+<form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate()">
+  <div class="card" style="width: 30%; margin: 0 auto;">
+    <mat-form-field class="my-1 mx-3 mt-3" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input value="" matInput formControlName="name">
+        <mat-error *ngIf="name?.invalid">Name needs to have {{name?.errors?.minlength?.requiredLength}} characters.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="my-1 mx-3" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="description?.invalid"> Descrierea este necesara</mat-error>
+      </mat-form-field>
+      <mat-form-field class="my-1 mx-3" appearance="fill">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location">
+        <mat-error *ngIf="location?.invalid"> Location required</mat-error>
+      </mat-form-field>
+        <button  class="btn btn-primary m-3" type="submit" [disabled]="updateForm?.invalid">Update item</button>
+</div>
+
+</form>
+</section>
+
