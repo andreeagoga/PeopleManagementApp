@@ -71,62 +71,63 @@ namespace PeopleManagementApi.Controllers
         }
 
         //Put: api/company/job/5/5
-        [HttpPut("{companyId}/{id}")]
-        public async Task<IActionResult> PutJob(long id, long companyId, JobDTO jobDTO)
+        [HttpPut("{companyId}/[controller]/{jobId}")]
+        public async Task<IActionResult> PutJob(long companyId, long jobId,  JobDTO jobDTO)
         {
-            // var company = await _context.Companies.FindAsync(companyId);
-            // var job = JobMappers.DTOToJob(jobDTO);
-            // job.Comp = company;
-
-            // if (id != job.Id)
-            // {
-            //     return BadRequest();
-            // }
-            // _context.Entry(job).State = EntityState.Modified;
-            // await _context.SaveChangesAsync();
-            // return NoContent();
-            if (id != jobDTO.Id)
-            {
-                return BadRequest();
-            }
             var company = await _context.Companies.FindAsync(companyId);
             var job = JobMappers.DTOToJob(jobDTO);
             job.Comp = company;
-       
-            if (company == null || job == null)
-            {
-                return NotFound();
-            }
-        
-            job.Title = jobDTO.Title;
-            job.Description = jobDTO.Description;
-            job.Location = jobDTO.Location;
-            job.Type = jobDTO.Type;
-            job.Comp = company;
-            try {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!JobExists(job.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-                
-            }
+            
 
+            if (jobId != job.Id)
+            {
+                return BadRequest();
+            }
+            _context.Entry(job).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
             return NoContent();
+            // if (jobId != jobDTO.Id)
+            // {
+            //     return BadRequest();
+            // }
+            // // var company = await _context.Companies.FindAsync(companyId);
+            // var job = JobMappers.DTOToJob(jobDTO);
+
+       
+            // if (company == null || job == null)
+            // {
+            //     return NotFound();
+            // }
+        
+            // job.Title = jobDTO.Title;
+            // job.Description = jobDTO.Description;
+            // job.Location = jobDTO.Location;
+            // job.Type = jobDTO.Type;
+            // job.Comp = company;
+            // try {
+            //     await _context.SaveChangesAsync();
+            // }
+            // catch (DbUpdateConcurrencyException)
+            // {
+            //     if (!JobExists(job.Id))
+            //     {
+            //         return NotFound();
+            //     }
+            //     else
+            //     {
+            //         throw;
+            //     }
+                
+            // }
+
+            // return NoContent();
          
         }
 
         // POST: api/company/job
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost("{companyId}")]
+        [HttpPost("{companyId}/[controller]")]
         public async Task<ActionResult<JobDTO>> PostJob(long companyId, JobDTO jobDTO)
         {
             
@@ -147,11 +148,11 @@ namespace PeopleManagementApi.Controllers
     
 
         // DELETE: api/company/job/5/5
-        [HttpDelete("{companyId}/{id}")]
-        public async Task<ActionResult<JobDTO>> DeleteJob(long id, long companyId)
+        [HttpDelete("{companyId}/[controller]/{jobId}")]
+        public async Task<ActionResult<JobDTO>> DeleteJob(long companyId, long jobId)
         {
             var company = await _context.Companies.FindAsync(companyId);
-            var job = await _context.Jobs.FindAsync(id);
+            var job = await _context.Jobs.FindAsync(jobId);
             job.Comp = company;
             if (job == null || company == null)
             {
@@ -163,9 +164,9 @@ namespace PeopleManagementApi.Controllers
             return JobMappers.JobToDTO(job);
         }
 
-        private bool JobExists(long id)
+        private bool JobExists(long jobId)
         {
-            return _context.Jobs.Any(e => e.Id == id);
+            return _context.Jobs.Any(e => e.Id == jobId);
         }
     }
 }

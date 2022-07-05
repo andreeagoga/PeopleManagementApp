@@ -4,7 +4,7 @@
         <div class="card-body my-3">
             <h1 class="card-title" style="text-align: center;">Open jobs in {{dataSource?.name}}</h1>
                 <div>
-                    <ul class="list-group my-5" *ngFor="let newItem of dataSource?.jobs">
+                    <ul class="list-group my-5" *ngFor="let newItem of dataSourceJob">
                         <li class="list-group-item active" >
                             <h2>{{newItem.title}}</h2>
                         </li>
@@ -30,8 +30,8 @@
                               </div>
                         </li> -->
                         <li class="list-group-item d-flex justify-content-end">
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/people', dataSource?.id, newItem.id]">People</button>
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/update',  dataSource?.id, newItem.id]">Edit job</button>                            
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/', dataSource?.id, 'job', newItem.id, 'people']">People</button>
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company', dataSource?.id, 'job', newItem.id, 'edit']">Edit job</button>                            
                             <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
                                 <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove job</button>
                             </div>
@@ -68,7 +68,7 @@
                                     <mat-label>Job title</mat-label>
                                     <input matInput name="title" [(ngModel)]="newJob.title">
                                 </mat-form-field>
-                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button>
+                                <!-- <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button> -->
                             </div>
                           </div> 
                         </div>
@@ -79,7 +79,7 @@
                                       <mat-label>Job type</mat-label>
                                       <input matInput name="type" [(ngModel)]="newJob.type">
                                   </mat-form-field>
-                                  <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByType(newJob)">Filter</button>
+                                  <!-- <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByType(newJob)">Filter</button> -->
                               </div>
                             </div> 
                           </div>

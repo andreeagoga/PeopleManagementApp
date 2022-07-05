@@ -13,7 +13,8 @@ import { JobService } from 'src/app/services/job.service';
   styleUrls: ['./editjob.component.scss']
 })
 export class EditjobComponent implements OnInit {
-  private currentActivityId?: number;
+  private companyId?: number;
+  private jobId?: number;
   private routeSub: Subscription = new Subscription();
   items: Job[] = []
   errors: any;
@@ -24,10 +25,11 @@ export class EditjobComponent implements OnInit {
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
       console.log(params);
-      this.currentActivityId = params['id'];
-      if (this.currentActivityId) {
+      this.companyId = params['companyId'];
+      this.jobId = params['jobId'];
+      if (this.companyId && this.jobId) {
         this.jobService
-          .getJobById(this.currentActivityId, this.currentActivityId)
+          .getJobById(this.companyId, this.jobId)
           .subscribe((job: Job) => {
             this.updateForm.patchValue(job);
             // this.items = job.people? job.people : [];
@@ -49,21 +51,22 @@ export class EditjobComponent implements OnInit {
   get type() { return this.updateForm.get('type'); }
 
   onSubmitUpdate() {
-    console.log(this.router.params);
-
+    // console.log(this.router.params);
     this.router.params.subscribe((params) => {
-      const id = params['id'] as number;
+      const companyId = params['companyId'] as number;
       console.log(params);
       this.errors = undefined;
       let activity = this.updateForm.value;
-      activity.id = this.currentActivityId;
-      if(this.currentActivityId){
-        this.jobService.updateItem(this.currentActivityId, activity, id).subscribe((job) => {
+      activity.id = Number(this.jobId);
+      console.log(typeof this.jobId);
+      // console.log(activity.id)
+      if(this.jobId){
+        this.jobService.updateItem(companyId, this.jobId, activity).subscribe((job) => {
           this._snackBar.open('Itemul a fost modificat', "ok", {
             verticalPosition: 'top',
             duration: 2 * 1000 
           });
-          this.updateForm.reset();
+          // this.updateForm.reset();
           this.navigateToMainPage();
         }, (error) => {
           this.errors = error.error.errors;
@@ -77,6 +80,6 @@ export class EditjobComponent implements OnInit {
     }); 
   }
   navigateToMainPage(){
-    this.routerNew.navigate(['company/job/:id']);
+    this.routerNew.navigate(['company', this.companyId, 'job']);
   }
 }

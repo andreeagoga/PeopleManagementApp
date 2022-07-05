@@ -19,6 +19,7 @@ namespace PeopleManagementApi.Mappers
         public static Job DTOToJob(JobDTO jobDTO) =>
             new Job
             {
+                Id = jobDTO.Id,
                 Title = jobDTO.Title,
                 Description = jobDTO.Description,
                 Location = jobDTO.Location,

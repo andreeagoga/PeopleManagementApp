@@ -29,7 +29,7 @@ namespace PeopleManagementApi.Controllers
 
         // GET: api/People
         [HttpGet("{companyId}/job/{jobId}/[controller]")]
-        public async Task<ActionResult<IEnumerable<PeopleDTO>>> GetPeopleAll(long jobId, long companyId)
+        public async Task<ActionResult<IEnumerable<PeopleDTO>>> GetPeopleAll(long companyId, long jobId)
         {
             var query = _context.People.AsQueryable();
 
@@ -43,25 +43,25 @@ namespace PeopleManagementApi.Controllers
 
         // GET: api/People/5
         [HttpGet("{companyId}/job/{jobId}/[controller]/{idPerson}")]
-        public async Task<ActionResult<PeopleDTO>> GetPeople(long id, long jobId, long companyId)
+        public async Task<ActionResult<PeopleDTO>> GetPeople( long companyId, long jobId, long peopleId)
         {
             var people = await _context.People
             .Where(item => item.Parent.Comp.Id == companyId)
             .Where(item => item.Parent.Id == jobId)
-            .Where(item => item.Id == id)
+            .Where(item => item.Id == peopleId)
             .Select(item => PeopleMappers.PeopleToDTO(item))
             .FirstOrDefaultAsync();
             return people;
         }
 
         // PUT: api/People/5
-        [HttpPut("{companyId}/{jobId}/{id}")]
-        public async Task<ActionResult<PeopleDTO>> PutPeople(long id, PeopleDTO peopleDTO, long jobId, long companyId)
+        [HttpPut("{companyId}/job/{jobId}/[controller]/{peopleId}")]
+        public async Task<ActionResult<PeopleDTO>> PutPeople(long peopleId, PeopleDTO peopleDTO, long jobId, long companyId)
         {
             var people = await _context.People
             .Where(item => item.Parent.Id == jobId)
             .Where(item => item.Parent.Comp.Id == companyId)
-            .Where(item => item.Id == id)
+            .Where(item => item.Id == peopleId)
             .FirstOrDefaultAsync();
             if (people == null)
             {
@@ -81,7 +81,7 @@ namespace PeopleManagementApi.Controllers
     
 
         //POST: api/People
-        [HttpPost("{companyId}/{jobId}")]
+        [HttpPost("{companyId}/job/{jobId}/[controller]")]
         public async Task<ActionResult<PeopleDTO>> PostPeople(PeopleDTO peopleDTO, long jobId, long companyId)
         {
             var company = await _context.Companies.FindAsync(companyId);
@@ -97,13 +97,13 @@ namespace PeopleManagementApi.Controllers
         }
 
         // DELETE: api/People/5
-        [HttpDelete("{companyId}/{jobId}/{id}")]
-        public async Task<ActionResult<PeopleDTO>> DeletePeople(long id, long jobId, long companyId)
+        [HttpDelete("{companyId}/job/{jobId}/[controller]/{id}")]
+        public async Task<ActionResult<PeopleDTO>> DeletePeople(long peopleId, long jobId, long companyId)
         {
             var people = await _context.People
             .Where(item => item.Parent.Id == jobId)
             .Where(item => item.Parent.Comp.Id == companyId)
-            .Where(item => item.Id == id)
+            .Where(item => item.Id == peopleId)
             .FirstOrDefaultAsync();
             if (people == null)
             {
@@ -114,9 +114,9 @@ namespace PeopleManagementApi.Controllers
             return PeopleMappers.PeopleToDTO(people);
         }
 
-        private bool PeopleExists(long id)
+        private bool PeopleExists(long peopleId)
         {
-            return _context.People.Any(e => e.Id == id);
+            return _context.People.Any(e => e.Id == peopleId);
         }
     }
   

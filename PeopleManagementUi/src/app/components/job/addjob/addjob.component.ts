@@ -59,6 +59,6 @@ export class AddjobComponent implements OnInit {
 }
 
   navigateToJobPage(){
-    this.router.navigate(['company/jobs/' + this.route.snapshot.params['id']]);
+    this.router.navigate(['company/', this.route.snapshot.params['id'], 'job']);
   }
 }

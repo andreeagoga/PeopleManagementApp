@@ -39,19 +39,19 @@ const routes: Routes = [
     component: AddComponent,
   },
   {
-    path: 'company/edit/:id',
+    path: 'company/:id/edit',
     component: UpdateComponent,
   },
   {
-    path: 'company/job/:id',
+    path: 'company/:id/job',
     component: JobComponent,
   },
   {
-    path: 'company/job/:id/add',
+    path: 'company/:id/job/add',
     component: AddjobComponent,
   },
   {
-    path: 'company/job/people/:companyId/:id',
+    path: 'company/:companyId/job/:id/people',
     component: PeopleComponent,
   },
   // {
@@ -67,7 +67,7 @@ const routes: Routes = [
     component: SkillComponent,
   },
   {
-    path: 'company/job/update/:id',
+    path: 'company/:companyId/job/:jobId/edit',
     component: EditjobComponent,
   },
   {

@@ -21,8 +21,8 @@
                             <span>Years of experience: </span> {{newItem.yearsOfExperience}}
                         </li>
                         <li class="list-group-item d-flex justify-content-end">
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/people', newItem.id]">People</button>
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/update', newItem.id]">Edit job</button>                            
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/people', newItem.id]">Skills</button>
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/update', newItem.id]">Edit people</button>                            
                             <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
                                 <!-- <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove job</button> -->
                             </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="list-group-item d-flex ">
                     <div class="flex-grow-1 ">
-                        <!-- <button  class="btn btn-primary mx-2" (click)="navigateToAddJobPage()">Add new job</button>             -->
+                        <button  class="btn btn-primary mx-2" (click)="navigateToAddPeoplePage()">Add new people</button>            
                     </div>
                 </div>
 

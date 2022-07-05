@@ -37,7 +37,7 @@ export class UpdatetodoComponent implements OnInit {
   updateTodoForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     endDate: ['', [Validators.required]],
-    idComplete:[''],
+    isComplete:[''],
   });
   
   get name() { return this.updateTodoForm.get('name'); }

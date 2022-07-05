@@ -11,25 +11,25 @@ import { People } from '../models/people';
 export class PeopleService {
 
   constructor(private httpClient: HttpClient) {}
-  getItem(){
-    return this.httpClient.get<People[]>(`${API_URL}/company/job/people/${localStorage.getItem('companyId')}/${localStorage.getItem('id')}`); 
+  getItem(companyId: number, jobId: number){
+    return this.httpClient.get<People[]>(`${API_URL}/company/${companyId}/job/${jobId}/people`); 
   }
   
 
-  getPeopleById(id: number, company: Company, job: Job){
-    return this.httpClient.get<People>(`${API_URL}/company/job/people/${company.id}/${job.id}/${id}`);
+  getPeopleById(companyId: number, jobId: number, peopleId: number){
+    return this.httpClient.get<People>(`${API_URL}/company/${companyId}/job/${jobId}/people/${peopleId}`);
   }
 
-  addItem(item: People, id: number){
-    return this.httpClient.post<People>(`${API_URL}/company/job/people/${id}`, item); 
+  addItem(item: People, peopleId: number){
+    return this.httpClient.post<People>(`${API_URL}/company/job/people/${peopleId}`, item); 
   }
 
-  updateItem(item: People, company: Company, job: Job){
-    return this.httpClient.put<People>(`${API_URL}/company/job/people/${company.id}/${job.id}/${item.id}`, item);
+  updateItem(peopleId: number, item: People, companyId: number, jobId: number){
+    return this.httpClient.put<People>(`${API_URL}/company/${companyId}/job/${jobId}/people/${peopleId}`, item);
   }
 
-  deleteItem(item: People, company: Company, job: Job){
-    return this.httpClient.delete(`${API_URL}/company/job/people/${company.id}/${job.id}/${item.id}`);
+  deleteItem(item: People, companyId: number, jobId: number){
+    return this.httpClient.delete(`${API_URL}/company/${companyId}/job/${jobId}/people/${item.id}`);
   }
 
   // filterByTitle(item: People, companyId: number){

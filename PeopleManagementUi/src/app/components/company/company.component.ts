@@ -55,11 +55,12 @@ export class CompanyComponent implements OnInit {
   }
 
   navigateToUpdatePage() {
-    this.router.navigate(['company/edit/:id']);
+    this.router.navigate(['company/:id/edit/']);
   }
 
 
 
 }
+
 
 

@@ -41,8 +41,8 @@
                             <br /> {{item.title}} -->
                         </li>
                         <li class="list-group-item d-flex justify-content-end">
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/job/', newItem.id]">Jobs details</button>
-                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/edit/', newItem.id]">Edit company</button>                            
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/', newItem.id, 'job']">Jobs details</button>
+                            <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/', newItem.id, 'edit']">Edit company</button>                            
                             <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
                                 <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove company</button>
                             </div>

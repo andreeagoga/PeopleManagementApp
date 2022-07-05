@@ -30,7 +30,9 @@ export class PeopleComponent implements OnInit {
     });
   }
       
-
+  navigateToAddPeoplePage() {
+    // this.route.navigate(['company/', this.dataSource?.id, 'job' , 'add']);
+  }
 
   
 
