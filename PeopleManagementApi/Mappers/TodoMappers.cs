@@ -17,6 +17,7 @@ namespace PeopleManagementApi.Mappers
         public static Todo DTOToTodo(TodoDTO todoDTO) =>
             new Todo
         {
+            Id = todoDTO.Id,
             Name = todoDTO.Name,
             EndDate = todoDTO.EndDate,
             IsComplete = todoDTO.IsComplete,

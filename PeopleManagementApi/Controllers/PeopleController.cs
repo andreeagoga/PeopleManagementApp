@@ -42,16 +42,21 @@ namespace PeopleManagementApi.Controllers
         }
 
         // GET: api/People/5
-        [HttpGet("{companyId}/job/{jobId}/[controller]/{idPerson}")]
+        [HttpGet("{companyId}/job/{jobId}/[controller]/{peopleId}")]
         public async Task<ActionResult<PeopleDTO>> GetPeople( long companyId, long jobId, long peopleId)
         {
+
             var people = await _context.People
-            .Where(item => item.Parent.Comp.Id == companyId)
-            .Where(item => item.Parent.Id == jobId)
-            .Where(item => item.Id == peopleId)
-            .Select(item => PeopleMappers.PeopleToDTO(item))
-            .FirstOrDefaultAsync();
-            return people;
+            .Include(t => t.Skills)
+            .FirstOrDefaultAsync(item => item.Id == peopleId && item.Parent.Id == jobId && item.Parent.Comp.Id == companyId);
+
+            if (people == null)
+            {
+                return NotFound();
+            }
+
+            return PeopleMappers.PeopleToDTO(people);
+
         }
 
         // PUT: api/People/5
@@ -97,7 +102,7 @@ namespace PeopleManagementApi.Controllers
         }
 
         // DELETE: api/People/5
-        [HttpDelete("{companyId}/job/{jobId}/[controller]/{id}")]
+        [HttpDelete("{companyId}/job/{jobId}/[controller]/{peopleId}")]
         public async Task<ActionResult<PeopleDTO>> DeletePeople(long peopleId, long jobId, long companyId)
         {
             var people = await _context.People

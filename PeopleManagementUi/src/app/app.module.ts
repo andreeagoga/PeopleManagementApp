@@ -19,10 +19,14 @@ import { AddjobComponent } from './components/job/addjob/addjob.component';
 import { EditjobComponent } from './components/job/editjob/editjob.component';
 
 import { PeopleComponent } from './components/people/people.component';
+import { AddpeopleComponent } from './components/people/addpeople/addpeople.component';
+import { EditpeopleComponent } from './components/people/editpeople/editpeople.component';
+
 import { SkillComponent } from './components/skill/skill.component';
 
 import { TodoComponent } from './components/todo/todo.component';
 import { AddtodoComponent } from './components/todo/addtodo/addtodo.component';
+import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.component';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -39,7 +43,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatFormField } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.component';
+
 
 
 
@@ -58,6 +62,8 @@ import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.com
     EditjobComponent,
 
     PeopleComponent,
+    AddpeopleComponent,
+    EditpeopleComponent,
 
     SkillComponent,
 
@@ -69,6 +75,8 @@ import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.com
     RegisterComponent,
     ConfirmComponent,
     UpdatetodoComponent,
+    AddpeopleComponent,
+    EditpeopleComponent,
 
 
   ],

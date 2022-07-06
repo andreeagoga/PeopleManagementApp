@@ -15,31 +15,22 @@
                             <span>Location: </span> {{newItem.location}}
                         </li>
                         <li class="list-group-item">Jobs: 
-                          <span *ngFor="let item of newItem.jobs">
-                            <span>{{item.title}}
-                                <span *ngFor="let people of item.people">
-                                    <span>{{people.firstName}} {{people.lastName}}</span>
-                                </span>
-                            </span> 
-                        </span> 
+                          <ul *ngFor="let item of newItem.jobs">
+                            <li>{{item.title}}</li>
+                          </ul> 
                       </li>
-                        <li class="list-group-item">
+                        <!-- <li class="list-group-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                   Jobs
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <div *ngFor="let item of newItem.jobs">
-                                  <li class="dropdown-item"> {{item.title}}</li>
-                                  <div *ngFor="let people of item.people">
-                                    <li class="dropdown-item"> {{people.firstName}} {{people.lastName}}</li>
-                                  </div>
+                                  <li class="dropdown-item"> {{item.title}}</li>          
                                   </div>
                                 </ul>
                               </div>
-                            <!-- <span>Jobs:</span>
-                            <br /> {{item.title}} -->
-                        </li>
+                        </li> -->
                         <li class="list-group-item d-flex justify-content-end">
                             <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/', newItem.id, 'job']">Jobs details</button>
                             <button class="btn btn-outline-primary mx-2"[routerLink]="['/company/', newItem.id, 'edit']">Edit company</button>                            

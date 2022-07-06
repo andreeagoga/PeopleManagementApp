@@ -14,14 +14,13 @@ export class PeopleService {
   getItem(companyId: number, jobId: number){
     return this.httpClient.get<People[]>(`${API_URL}/company/${companyId}/job/${jobId}/people`); 
   }
-  
 
   getPeopleById(companyId: number, jobId: number, peopleId: number){
     return this.httpClient.get<People>(`${API_URL}/company/${companyId}/job/${jobId}/people/${peopleId}`);
   }
 
-  addItem(item: People, peopleId: number){
-    return this.httpClient.post<People>(`${API_URL}/company/job/people/${peopleId}`, item); 
+  addItem(item: People, companyId: number, jobId: number){
+    return this.httpClient.post<People>(`${API_URL}/company/${companyId}/job/${jobId}/people`, item); 
   }
 
   updateItem(peopleId: number, item: People, companyId: number, jobId: number){

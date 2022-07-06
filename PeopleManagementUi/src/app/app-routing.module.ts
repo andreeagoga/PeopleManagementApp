@@ -15,6 +15,8 @@ import { TodoComponent } from './components/todo/todo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddtodoComponent } from './components/todo/addtodo/addtodo.component';
 import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.component';
+import { AddpeopleComponent } from './components/people/addpeople/addpeople.component';
+import { EditpeopleComponent } from './components/people/editpeople/editpeople.component';  
 
 
 const routes: Routes = [
@@ -51,24 +53,28 @@ const routes: Routes = [
     component: AddjobComponent,
   },
   {
+    path: 'company/:companyId/job/:jobId/edit',
+    component: EditjobComponent,
+  },
+  {
     path: 'company/:companyId/job/:id/people',
     component: PeopleComponent,
   },
-  // {
-  //   path: 'company/job/people/:id/add',
-  //   component: AddpeopleComponent,
-  // },
+  {
+    path: 'company/:companyId/job/:id/people/add',
+    component: AddpeopleComponent,
+  },
+  {
+    path: 'company/:companyId/job/:id/people/:peopleId/edit',
+    component: EditpeopleComponent,
+  },
   // {
   //   path: 'company/job/people/skill/:id/add',
   //   component: AddskillComponent,
   // },
    {
-    path: 'company/job/people/skill/:id',
+    path: 'company/:companyId/job/:jobId/people/:peopleId/skill',
     component: SkillComponent,
-  },
-  {
-    path: 'company/:companyId/job/:jobId/edit',
-    component: EditjobComponent,
   },
   {
     path: 'auth/login',

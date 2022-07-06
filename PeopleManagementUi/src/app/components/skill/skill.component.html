@@ -1,1 +1,35 @@
-<p>skill works!</p>
+
+<main class="mt-5">
+    <div class="card d-flex"  style="width: 80%; margin: 0 auto;">
+        <div class="card-body my-3">
+            <h1 class="card-title" style="text-align: center;">Skills of: {{dataSource?.firstName}} {{dataSource?.lastName}}</h1>
+                <div>
+                    <ul class="list-group my-5" *ngFor="let newItem of dataSourceSkill">
+                        <li class="list-group-item active" >
+                            <h2>{{newItem.name}}</h2>
+                        </li>
+                        <li class="list-group-item">
+                            <span>Level: </span>{{newItem.level}}
+                        </li>
+                        <li class="list-group-item">
+                            <span>Type: </span> {{newItem.type}}
+                        </li>
+                        <li class="list-group-item d-flex justify-content-end">
+                            <!-- <button class="btn btn-outline-primary mx-2"[routerLink]="['/company', dataSource?.companyId,'job', dataSource?.id, 'people', newItem.id, 'edit']">Edit people</button>                             -->
+                            <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
+                                <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove skill</button>
+                            </div>
+    
+                        </li>
+                    </ul>
+                </div>
+                <div class="list-group-item d-flex ">
+                    <div class="flex-grow-1 ">
+                        <!-- <button  class="btn btn-primary mx-2" (click)="navigateToAddPeoplePage()">Add new people</button>             -->
+                    </div>
+                </div>
+
+            </div>  
+        </div>
+    </main>
+    

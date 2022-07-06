@@ -6,6 +6,7 @@ import { CompanyService } from 'src/app/services/company.service';
 
 import { PeopleService } from 'src/app/services/people.service';
 import { Company } from 'src/app/models/company';
+import { People } from 'src/app/models/people';
 
 @Component({
   selector: 'app-people',
@@ -13,25 +14,41 @@ import { Company } from 'src/app/models/company';
   styleUrls: ['./people.component.scss']
 })
 export class PeopleComponent implements OnInit {
-  dataSource?:Job;
+  dataSource?:Job & {companyId: number};
+  dataSourcePeople?:People[] = [];
 
   
-  constructor(private service: JobService, private serviceCompany: CompanyService, private route: Router, private routeActivated: ActivatedRoute) { }
+  constructor(private serviceJob: JobService, private servicePeople: PeopleService, private route: Router, private routeActivated: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.routeActivated.params.subscribe((params) => {
-      const id = params['id'] as number;
+      const jobId = params['id'] as number;
       const companyId = params['companyId'] as number;
-      this.service.getJobById(companyId, id).subscribe((item: any) => {
-        this.dataSource = item;
-        console.log(item);
+      this.serviceJob.getJobById(companyId, jobId).subscribe((item: Job) => {
+        this.dataSource = {...item, companyId};
+        this.dataSourcePeople = item.people;
      
       });
     });
   }
-      
+  
+  deleteItem(item: People){
+    this.routeActivated.params.subscribe((params) => {
+      const jobId = params['id'] as number;
+      const companyId = params['companyId'] as number;
+      console.log(params);
+      this.servicePeople.deleteItem(item, companyId, jobId).subscribe(() => {
+        this.dataSourcePeople = this.dataSourcePeople?.filter((newItem) => newItem.id != item.id)
+      });
+    });
+  }
+
   navigateToAddPeoplePage() {
-    // this.route.navigate(['company/', this.dataSource?.id, 'job' , 'add']);
+    this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', 'add']);
+  }
+
+  navigateToEditPeoplePage() {
+    // this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', , 'edit']);
   }
 
   

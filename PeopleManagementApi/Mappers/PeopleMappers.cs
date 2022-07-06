@@ -21,6 +21,7 @@ namespace PeopleManagementApi.Mappers
         public static People DTOToPeople(PeopleDTO peopleDTO) =>
             new People
             {
+                Id = peopleDTO.Id,
                 FirstName = peopleDTO.FirstName,
                 LastName = peopleDTO.LastName,
                 Email = peopleDTO.Email,

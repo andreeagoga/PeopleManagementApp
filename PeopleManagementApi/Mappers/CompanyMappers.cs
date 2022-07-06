@@ -18,6 +18,7 @@ namespace PeopleManagementApi.Mappers
         public static Company DTOToCompany(CompanyDTO companyDTO) =>
             new Company
             {
+                Id = companyDTO.Id,
                 Name = companyDTO.Name,
                 Description = companyDTO.Description,
                 Location = companyDTO.Location,

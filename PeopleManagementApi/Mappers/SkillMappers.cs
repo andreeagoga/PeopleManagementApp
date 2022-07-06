@@ -18,6 +18,7 @@ namespace PeopleManagementApi.Mappers
         public static Skill DTOToSkill(SkillDTO skillDTO) =>
             new Skill
             {
+                Id = skillDTO.Id,
                 Name = skillDTO.Name,
                 Level = skillDTO.Level,
                 Type = skillDTO.Type,

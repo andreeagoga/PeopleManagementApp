@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Job } from 'src/app/models/job';
+import { People } from 'src/app/models/people';
+import { Skill } from 'src/app/models/skill';
+import { PeopleService } from 'src/app/services/people.service';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-skill',
@@ -6,10 +12,45 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./skill.component.scss']
 })
 export class SkillComponent implements OnInit {
+  dataSource?: People;
+  dataSourceSkill?: Skill [] = [];
 
-  constructor() { }
+  
+  constructor(private servicePeople: PeopleService, private serviceSkill: SkillService, private route: Router, private routeActivated: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.routeActivated.params.subscribe((params) => {
+      const jobId = params['jobId'] as number;
+      const companyId = params['companyId'] as number;
+      const peopleId = params['peopleId'] as number;
+      this.servicePeople.getPeopleById(companyId, jobId, peopleId).subscribe((item: People) => {
+        this.dataSource = item;
+        this.dataSourceSkill = item.skills;
+     
+      });
+    });
+  }
+  
+  deleteItem(item: Skill){
+    this.routeActivated.params.subscribe((params) => {
+      const jobId = params['id'] as number;
+      const companyId = params['companyId'] as number;
+      console.log(params);
+      this.servicePeople.deleteItem(item, companyId, jobId).subscribe(() => {
+        this.dataSourceSkill = this.dataSourceSkill?.filter((newItem) => newItem.id != item.id)
+      });
+    });
   }
 
+  // navigateToAddPeoplePage() {
+  //   this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', 'add']);
+  // }
+
+  // navigateToEditPeoplePage() {
+  //   this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', , 'edit']);
+  // }
+
+  
+
+  
 }
