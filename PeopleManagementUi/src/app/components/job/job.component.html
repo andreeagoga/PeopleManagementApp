@@ -62,7 +62,7 @@
                                     <mat-label>Location</mat-label>
                                     <input matInput name="location" [(ngModel)]="newJob.location">
                                 </mat-form-field>
-                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByLocation(newJob)">Filter</button>
+                                <button class="btn btn-primary mx-2" (click)="filterByLocation(newJob)">Filter</button>
                             </div>
                           </div>
                         </div>
@@ -73,7 +73,7 @@
                                     <mat-label>Job title</mat-label>
                                     <input matInput name="title" [(ngModel)]="newJob.title">
                                 </mat-form-field>
-                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button>
+                                <button class="btn btn-primary mx-2" (click)="filterByTitle(newJob)">Filter</button>
                             </div>
                           </div> 
                         </div>

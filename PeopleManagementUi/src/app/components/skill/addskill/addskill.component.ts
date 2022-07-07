@@ -22,7 +22,7 @@ export class AddskillComponent implements OnInit {
 
   addSkillForm = this.formBuilder.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
-    level: ['', [Validators.required]],
+    level: ['', [Validators.required], Validators.pattern('[0-9]*')],
     type:['', [Validators.required]],
 
 

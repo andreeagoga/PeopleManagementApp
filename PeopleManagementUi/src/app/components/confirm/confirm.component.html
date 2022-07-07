@@ -1,10 +1,14 @@
+<section class="mt-5">
+    <h1 style="text-align: center;">Confirm user</h1>
+
 <form [formGroup]="confirmForm" (ngSubmit)="onConfirm()">
-    <div class="container">
-        <mat-form-field appearance="fill">
+    <div class="card my-5" style="width: 15%; margin: 0 auto;">   
+        <mat-form-field class="my-1 mx-3" appearance="fill">
             <mat-label>Username</mat-label>
             <input matInput formControlName="username">
             <mat-error *ngIf="username?.invalid">Username-ul este nesesar</mat-error>
         </mat-form-field> 
-        <button mat-raised-button color="primary" type="submit" [disabled]="confirmForm?.invalid">Confirm</button>
+        <button class="btn btn-primary m-3"  type="submit" [disabled]="confirmForm?.invalid">Confirm</button>
     </div>
 </form>
+</section>

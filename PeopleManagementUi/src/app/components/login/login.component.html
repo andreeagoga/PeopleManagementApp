@@ -1,17 +1,19 @@
-
-    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-        <div class="container">
-        <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="username">
-            <mat-error *ngIf="username?.invalid">Username-ul este nesesar</mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password">
-            <mat-error *ngIf="password?.invalid"> Parola este necesara</mat-error>
-          </mat-form-field>
-            <button mat-raised-button color="primary" type="submit" [disabled]="loginForm?.invalid">Login</button>
-      </div>
+<section class="mt-5">
+  <h1 style="text-align: center;">Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+    <div class="card mt-5 my-5" style="width: 15%; margin: 0 auto;">
+        <mat-form-field class="my-1 mx-3 mt-3" appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username">
+          <mat-error *ngIf="username?.invalid">Username-ul este nesesar</mat-error>
+        </mat-form-field>
+        <mat-form-field class="my-1 mx-3" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="password?.invalid"> Parola este necesara</mat-error>
+        </mat-form-field>
+          <button class="btn btn-primary m-3" type="submit" [disabled]="loginForm?.invalid">Login</button>
+    </div>
 </form>
-
+</section>
+    
