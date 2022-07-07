@@ -17,6 +17,7 @@ import { AddtodoComponent } from './components/todo/addtodo/addtodo.component';
 import { UpdatetodoComponent } from './components/todo/updatetodo/updatetodo.component';
 import { AddpeopleComponent } from './components/people/addpeople/addpeople.component';
 import { EditpeopleComponent } from './components/people/editpeople/editpeople.component';  
+import { AddskillComponent } from './components/skill/addskill/addskill.component';
 
 
 const routes: Routes = [
@@ -68,10 +69,10 @@ const routes: Routes = [
     path: 'company/:companyId/job/:id/people/:peopleId/edit',
     component: EditpeopleComponent,
   },
-  // {
-  //   path: 'company/job/people/skill/:id/add',
-  //   component: AddskillComponent,
-  // },
+  {
+    path:  'company/:companyId/job/:jobId/people/:peopleId/skill/add',
+    component: AddskillComponent,
+  },
    {
     path: 'company/:companyId/job/:jobId/people/:peopleId/skill',
     component: SkillComponent,

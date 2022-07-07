@@ -33,18 +33,23 @@ export class SkillComponent implements OnInit {
   
   deleteItem(item: Skill){
     this.routeActivated.params.subscribe((params) => {
-      const jobId = params['id'] as number;
+      const jobId = params['jobId'] as number;
       const companyId = params['companyId'] as number;
+      const peopleId = params['peopleId'] as number;
       console.log(params);
-      this.servicePeople.deleteItem(item, companyId, jobId).subscribe(() => {
-        this.dataSourceSkill = this.dataSourceSkill?.filter((newItem) => newItem.id != item.id)
+      this.serviceSkill.deleteItem(item, companyId, jobId, peopleId).subscribe(() => {
+        this.dataSourceSkill = this.dataSourceSkill?.filter((newItem) => {
+          newItem.id != item.id;
+        console.log(typeof item.id);
+        }
+        )
       });
     });
   }
 
-  // navigateToAddPeoplePage() {
-  //   this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', 'add']);
-  // }
+  navigateToAddSkillPage() {
+    this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.routeActivated.snapshot.params['jobId'], 'people', this.routeActivated.snapshot.params['peopleId'], 'skill', 'add']);
+  }
 
   // navigateToEditPeoplePage() {
   //   this.route.navigate(['company/', this.routeActivated.snapshot.params['companyId'], 'job', this.dataSource?.id, 'people', , 'edit']);

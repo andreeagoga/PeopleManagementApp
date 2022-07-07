@@ -43,6 +43,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatFormField } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AddskillComponent } from './components/skill/addskill/addskill.component';
 
 
 
@@ -77,6 +78,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     UpdatetodoComponent,
     AddpeopleComponent,
     EditpeopleComponent,
+    AddskillComponent,
 
 
   ],

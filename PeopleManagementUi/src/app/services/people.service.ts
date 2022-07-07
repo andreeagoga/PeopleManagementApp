@@ -23,7 +23,7 @@ export class PeopleService {
     return this.httpClient.post<People>(`${API_URL}/company/${companyId}/job/${jobId}/people`, item); 
   }
 
-  updateItem(peopleId: number, item: People, companyId: number, jobId: number){
+  updateItem( item: People, companyId: number, jobId: number, peopleId: number){
     return this.httpClient.put<People>(`${API_URL}/company/${companyId}/job/${jobId}/people/${peopleId}`, item);
   }
 

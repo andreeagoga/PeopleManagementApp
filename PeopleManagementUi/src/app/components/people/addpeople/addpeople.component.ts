@@ -40,9 +40,14 @@ export class AddpeopleComponent implements OnInit {
 
   onAddSubmit() {
   this.route.params.subscribe((params) => {
-    const id = params['id'] as number;
+    const companyId = Number(params['companyId']);
+    const jobId = Number(params['id'] as number);
+    console.log(params);
+    console.log(typeof jobId);
+    console.log(typeof companyId);
+    console.log(this.addPeopleForm.value);
     this.errors = undefined;
-    this.peopleService.addItem(this.addPeopleForm.value, id,id).subscribe((people) => {
+    this.peopleService.addItem(this.addPeopleForm.value, companyId, jobId).subscribe((people) => {
       this._snackBar.open('Itemul a fost adaugat', "ok", {
         verticalPosition: 'top',
         duration: 6 * 1000 

@@ -43,23 +43,23 @@ export class JobComponent implements OnInit {
     });
   }
 
-  // filterByTitle(item: Job){
-  //   this.route.params.subscribe((params) => {
-  //     const id = params['id'] as number;
-  //     this.serviceJob.filterByTitle(item, id).subscribe(() => {
-  //     this.dataSourceJob = this.dataSourceJob.filter((newItem) => newItem.title == item.title)
-  //   });
-  // });
-  // }
+  filterByTitle(item: Job){
+    this.route.params.subscribe((params) => {
+      const id = params['id'] as number;
+      this.serviceJob.filterByTitle(item, id).subscribe((jobs) => {
+      this.dataSourceJob = jobs;
+    });
+  });
+  }
 
-  // filterByType(item: Job){
-  //   this.route.params.subscribe((params) => {
-  //     const id = params['id'] as number;
-  //     this.serviceJob.filterByType(item, id).subscribe(() => {
-  //     this.dataSourceJob = this.dataSourceJob.filter((newItem) => newItem.type == item.type)
-  //   });
-  // });
-  // }
+  filterByType(item: Job){
+    this.route.params.subscribe((params) => {
+      const id = params['id'] as number;
+      this.serviceJob.filterByType(item, id).subscribe((jobs) => {
+      this.dataSourceJob = jobs;
+    });
+  });
+  }
 
   filterByLocation(item: Job){
     this.route.params.subscribe((params) => {
@@ -74,11 +74,5 @@ export class JobComponent implements OnInit {
   navigateToAddJobPage() {
     this.routerNew.navigate(['company/', this.dataSource?.id, 'job' , 'add']);
   }
-
-
-  // navigateToPeoplePage() {
-  //   this.routerNew.navigate(['company/job/people/' +  this.dataSource?.id + '/']);
-  // }
-
 
 }

@@ -17,6 +17,11 @@
                         <li class="list-group-item">
                             <span>Type: </span> {{newItem.type}}
                         </li>
+                        <!-- <li class="list-group-item">Number of people: 
+                            <ul *ngFor="let item of newItem.people">
+                              <li>{{item.firstName}}</li>
+                            </ul> 
+                        </li> -->
                         <!-- <li class="list-group-item">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -68,7 +73,7 @@
                                     <mat-label>Job title</mat-label>
                                     <input matInput name="title" [(ngModel)]="newJob.title">
                                 </mat-form-field>
-                                <!-- <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button> -->
+                                <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByTitle(newJob)">Filter</button>
                             </div>
                           </div> 
                         </div>
@@ -79,7 +84,7 @@
                                       <mat-label>Job type</mat-label>
                                       <input matInput name="type" [(ngModel)]="newJob.type">
                                   </mat-form-field>
-                                  <!-- <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByType(newJob)">Filter</button> -->
+                                  <button class="btn btn-primary mx-2" mat-raised-button (click)="filterByType(newJob)">Filter</button>
                               </div>
                             </div> 
                           </div>

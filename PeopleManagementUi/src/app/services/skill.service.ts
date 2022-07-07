@@ -18,7 +18,7 @@ export class SkillService {
   }
 
   addItem(item: Skill, companyId: number, jobId: number, peopleId: number){
-    return this.httpClient.post<Skill>(`${API_URL}/company/${companyId}/job/${jobId}/people${peopleId}/skill`, item); 
+    return this.httpClient.post<Skill>(`${API_URL}/company/${companyId}/job/${jobId}/people/${peopleId}/skill`, item); 
   }
 
   updateItem(peopleId: number, item: Skill, companyId: number, jobId: number){
