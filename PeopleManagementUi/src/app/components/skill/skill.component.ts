@@ -36,13 +36,8 @@ export class SkillComponent implements OnInit {
       const jobId = params['jobId'] as number;
       const companyId = params['companyId'] as number;
       const peopleId = params['peopleId'] as number;
-      console.log(params);
       this.serviceSkill.deleteItem(item, companyId, jobId, peopleId).subscribe(() => {
-        this.dataSourceSkill = this.dataSourceSkill?.filter((newItem) => {
-          newItem.id != item.id;
-        console.log(typeof item.id);
-        }
-        )
+        this.dataSourceSkill = this.dataSourceSkill?.filter((newItem) => newItem.id != item.id)
       });
     });
   }

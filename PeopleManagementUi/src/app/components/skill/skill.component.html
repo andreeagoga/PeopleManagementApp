@@ -2,7 +2,7 @@
 <main class="mt-5">
     <div class="card d-flex"  style="width: 80%; margin: 0 auto;">
         <div class="card-body my-3">
-            <h1 class="card-title" style="text-align: center;">Skills of: {{dataSource?.firstName}} {{dataSource?.lastName}}</h1>
+            <h1 class="card-title" style="text-align: center;">{{dataSource?.firstName}} {{dataSource?.lastName}}'s skills</h1>
                 <div>
                     <ul class="list-group my-5" *ngFor="let newItem of dataSourceSkill">
                         <li class="list-group-item active" >
@@ -15,7 +15,6 @@
                             <span>Type: </span> {{newItem.type}}
                         </li>
                         <li class="list-group-item d-flex justify-content-end">
-                            <!-- <button class="btn btn-outline-primary mx-2"[routerLink]="['/company', dataSource?.companyId,'job', dataSource?.id, 'people', newItem.id, 'edit']">Edit people</button>                             -->
                             <div *ngIf="!newItem.preparingDelete" (click)="newItem.preparingDelete = true">
                                 <button class="btn btn-outline-primary mx-2" (click)="deleteItem(newItem)">Remove skill</button>
                             </div>

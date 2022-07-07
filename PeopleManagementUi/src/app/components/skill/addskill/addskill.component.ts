@@ -59,7 +59,7 @@ export class AddskillComponent implements OnInit {
 }
 
   navigateToSkillPage(){
-    this.router.navigate(['company/', this.route.snapshot.params['companyId'], 'job', this.route.snapshot.params['jobId'], 'people']);
+    this.router.navigate(['company/', this.route.snapshot.params['companyId'], 'job', this.route.snapshot.params['jobId'], 'people', this.route.snapshot.params['peopleId'], 'skill']);
   }
 }
 
