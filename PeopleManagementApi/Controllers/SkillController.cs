@@ -14,7 +14,7 @@ using System.Security.Claims;
 
 namespace PeopleManagementApi.Controllers
 {
-    [Route("api/company/{companyId}/job/{jobId}/people/{peopleId}/[controller]")]
+    [Route("api/company")]
     [ApiController]
     // [Authorize]
     public class SkillController : ControllerBase
@@ -27,20 +27,24 @@ namespace PeopleManagementApi.Controllers
     }
 
    // GET: api/Skill
-        [HttpGet]
+        [HttpGet("{companyId}/job/{jobId}/people/{peopleId}/[controller]")]
         public async Task<ActionResult<IEnumerable<SkillDTO>>> GetSkills(long skillId, long peopleId, long jobId, long companyId)
         {
-            return await _context.Skills
-            .Where(item => item.Parent.Parent.Comp.Id == companyId)
-            .Where(item => item.Parent.Parent.Id == jobId)
-            .Where(item => item.Parent.Id == peopleId)
-            .Where(item => item.Id == skillId)
+            var query = _context.Skills.AsQueryable();
+            return await query.Where(item => item.Parent.Id == peopleId && item.Parent.Parent.Id == jobId && item.Parent.Parent.Comp.Id == companyId)
             .Select(item => SkillMappers.SkillToDTO(item))
             .ToListAsync();
         }
+        //    var query = _context.People.AsQueryable();
+
+        //     return await query.Include(t => t.Skills)
+        //     .Where(item => item.Parent.Comp.Id == companyId)
+        //     .Where(item => item.Parent.Id == jobId)
+        //     .Select(item => PeopleMappers.PeopleToDTO(item))
+        //     .ToListAsync();
 
     // GET: api/Skill/5
-        [HttpGet("{skillId}")]
+        [HttpGet("{companyId}/job/{jobId}/people/{peopleId}/[controller]/{skillId}")]
         public async Task<ActionResult<SkillDTO>> GetSkill(long skillId, long peopleId, long jobId, long companyId)
         {
             var skill = await _context.Skills
@@ -54,7 +58,7 @@ namespace PeopleManagementApi.Controllers
         }
 
     //PUT: api/Skill/5
-        [HttpPut("{skillId}")]
+        [HttpPut("{companyId}/job/{jobId}/people/{peopleId}/[controller]/{skillId}")]
         public async Task<ActionResult<SkillDTO>> PutSkill(long skillId, SkillDTO skillDTO, long peopleId, long jobId, long companyId)
         {
             var skill = await _context.Skills
@@ -77,7 +81,7 @@ namespace PeopleManagementApi.Controllers
   
 
     //POST: api/Skill
-    [HttpPost]
+    [HttpPost("{companyId}/job/{jobId}/people/{peopleId}/[controller]")]
     public async Task<ActionResult<SkillDTO>> PostSkill(SkillDTO skillDTO, long jobId, long companyId, long peopleId)
     {
        var company = await _context.Companies.FindAsync(companyId);
@@ -95,7 +99,7 @@ namespace PeopleManagementApi.Controllers
     }
 
     // DELETE: api/Skill/5
-    [HttpDelete("{skillId}")]
+    [HttpDelete("{companyId}/job/{jobId}/people/{peopleId}/[controller]/{skillId}")]
     public async Task<ActionResult<SkillDTO>> DeleteSkill(long skillId, long peopleId, long jobId, long companyId)
     {
         var skill = await _context.Skills

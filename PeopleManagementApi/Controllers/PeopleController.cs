@@ -87,7 +87,7 @@ namespace PeopleManagementApi.Controllers
 
         //POST: api/People
         [HttpPost("{companyId}/job/{jobId}/[controller]")]
-        public async Task<ActionResult<PeopleDTO>> PostPeople(PeopleDTO peopleDTO, long jobId, long companyId)
+        public async Task<ActionResult<PeopleDTO>> PostPeople(PeopleDTO peopleDTO, long companyId, long jobId)
         {
             var company = await _context.Companies.FindAsync(companyId);
             var job = await _context.Jobs.FindAsync(jobId);
